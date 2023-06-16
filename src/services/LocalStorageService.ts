@@ -18,10 +18,15 @@ class LocalStorageService {
   }
 
   async listTasks(): Promise<TaskModel[]> {
-    await delay(2000);
-    const data = localStorage.getItem(this.key);
-    const tasks = filterLocalStorageData(data);
-    return tasks;
+    try {
+      await delay(1000);
+      const data = localStorage.getItem(this.key) || '[]';
+      const tasks = filterLocalStorageData(data);
+      return tasks;
+    } catch {
+      this.subscribeTasks([]);
+      return [];
+    }
   }
 
   async getTaskById(id: string): Promise<TaskModel> {

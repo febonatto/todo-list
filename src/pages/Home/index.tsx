@@ -83,7 +83,7 @@ export default function Home() {
       setIsLoadingDelete(true);
 
       if(taskBeingDeleted) {
-        await LocalStorageService.deleteTask('');
+        await LocalStorageService.deleteTask(taskBeingDeleted.id);
 
         setTasks((prevState) => prevState.filter(
           (task) => task.id !== taskBeingDeleted.id,

@@ -12,7 +12,7 @@ export default function filterLocalStorageData(data: unknown): TaskModel[] {
     throw new LocalStorageError('O valor armazenado no localStorage não está no formado JSON!');
   }
 
-  const parsedData = parseData(data);
+  const parsedData = parseData(data as string);
 
   if(!Array.isArray(parsedData)) {
     throw new LocalStorageError('O valor armazenado no localStorage não é um Array!');
